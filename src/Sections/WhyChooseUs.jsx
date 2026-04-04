@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { CheckCircle, Shield, Laptop, Users } from "lucide-react";
+import picture from "../assets/norex.jpg"; 
 
 export default function WhyChooseUs() {
   return (
@@ -86,12 +87,13 @@ export default function WhyChooseUs() {
         {/* RIGHT SIDE – IMAGE */}
         <div className="relative">
           <img
-            src="/norex.jpg" // Replace this with your actual image path
+            src={picture}
             alt="Students learning at Norex Brain Tech"
             className="rounded-3xl shadow-2xl w-full object-cover"
           />
           <div className="absolute -bottom-6 -left-6 bg-blue-600/20 w-40 h-40 rounded-full blur-3xl"></div>
         </div>
+
       </div>
     </section>
   );

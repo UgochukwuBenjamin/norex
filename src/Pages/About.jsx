@@ -1,3 +1,6 @@
+import picture from "../assets/norex.jpg"; 
+
+
 export default function About() {
   return (
     <div className="py-16 px-0">
@@ -47,7 +50,7 @@ export default function About() {
         {/* Image / Tech Logo Side */}
         <div className="flex justify-center">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png"
+            src={picture}
             alt="Tech logo"
             className="w-72 h-72 object-contain"
           />
