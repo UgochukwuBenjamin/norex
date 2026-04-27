@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import shedrack  from "../assets/image.png";
+import chi  from "../assets/chi.jpg";
+import legit  from "../assets/legit.jpg";
 export default function Testimonial() {
   const testimonials = [
     {
-      name: "Daniel A.",
+      name: "Ikechukwu Shadrach",
       course: "Web Development",
-      image: "https://randomuser.me/api/portraits/boys/32.jpg",
+      image: shedrack,
       text: "Before joining Norex Brain Tech, I didn't know anything about coding. Now I can build my own websites!",
     },
     {
-      name: "Precious M.",
+      name: "Chigbo Chiemerie",
       course: "Graphics Design",
-      image: "https://randomuser.me/api/portraits/girls/44.jpg",
+      image: chi,
       text: "I learned how to design professionally. My confidence has grown so much!",
     },
     {
-      name: "Samuel K.",
+      name: "Sunday Tiffany",
       course: "Video Editing",
-      image: "https://randomuser.me/api/portraits/boys/65.jpg",
+      image: legit,
       text: "The teachers are patient and supportive. I can now edit videos confidently.",
     },
     {
@@ -43,12 +45,14 @@ export default function Testimonial() {
 
   const [index, setIndex] = useState(0);
 
+  // Auto slide (fixed)
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
+      setIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
+
     return () => clearInterval(interval);
-  }, [index]);
+  }, []);
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % testimonials.length);
@@ -71,6 +75,7 @@ export default function Testimonial() {
           What Our Students Say
         </h2>
 
+        {/* Stars */}
         <div className="flex justify-center gap-1 text-yellow-400 mb-2">
           {[...Array(5)].map((_, i) => (
             <Star key={i} size={20} fill="currentColor" />
@@ -114,14 +119,14 @@ export default function Testimonial() {
               onClick={prevSlide}
               className="bg-white/10 hover:bg-blue-600 p-3 rounded-full transition"
             >
-              <ChevronLeft size={22} />
+              <ChevronLeft size={22} className="text-white" />
             </button>
 
             <button
               onClick={nextSlide}
               className="bg-white/10 hover:bg-blue-600 p-3 rounded-full transition"
             >
-              <ChevronRight size={22} />
+              <ChevronRight size={22} className="text-white" />
             </button>
           </div>
 
@@ -131,8 +136,10 @@ export default function Testimonial() {
               <div
                 key={i}
                 onClick={() => setIndex(i)}
-                className={`h-2 w-2 rounded-full cursor-pointer transition ${
-                  i === index ? "bg-blue-500 w-6" : "bg-gray-500"
+                className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${
+                  i === index
+                    ? "bg-blue-500 w-6"
+                    : "bg-gray-500 w-2"
                 }`}
               ></div>
             ))}
@@ -146,96 +153,3 @@ export default function Testimonial() {
     </section>
   );
 }
-
-
-// import { Star } from "lucide-react";
-
-// export default function Testimonial() {
-//   const testimonials = [
-//     {
-//       name: "Daniel A.",
-//       course: "Web Development",
-//       image: "https://randomuser.me/api/portraits/boys/32.jpg",
-//       text: "Before joining Norex Brain Tech, I didn't know anything about coding. Now I can build my own websites and even help my friends with theirs!",
-//     },
-//     {
-//       name: "Precious M.",
-//       course: "Graphics Design",
-//       image: "https://randomuser.me/api/portraits/girls/44.jpg",
-//       text: "I learned how to design flyers and logos professionally. My confidence has grown so much since I started learning here.",
-//     },
-//     {
-//       name: "Samuel K.",
-//       course: "Video Editing",
-//       image: "https://randomuser.me/api/portraits/boys/65.jpg",
-//       text: "The teachers are very patient and supportive. I can now edit videos for YouTube and school projects.",
-//     },
-//     {
-//       name: "Esther O.",
-//       course: "Office Automation",
-//       image: "https://randomuser.me/api/portraits/girls/68.jpg",
-//       text: "I now understand Microsoft Word, Excel, and PowerPoint very well. It has really improved my computer skills.",
-//     },
-//     {
-//       name: "Michael T.",
-//       course: "Web Development",
-//       image: "https://randomuser.me/api/portraits/boys/12.jpg",
-//       text: "Learning at Norex Brain Tech is fun and practical. We build real projects, not just theory.",
-//     },
-//     {
-//       name: "Grace B.",
-//       course: "Graphics Design",
-//       image: "https://randomuser.me/api/portraits/girls/22.jpg",
-//       text: "I love the friendly environment here. I discovered my passion for creativity and technology.",
-//     },
-//   ];
-
-//   return (
-//     <section className="bg-slate-900 py-20 px-6">
-//       <div className="max-w-6xl mx-auto text-center">
-//         <h2 className="text-4xl font-bold text-white mb-4">
-//           What Our Students Say
-//         </h2>
-//         <p className="text-gray-400 mb-12">
-//           Hear from our amazing students at Norex Brain Tech
-//         </p>
-
-//         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {testimonials.map((item, index) => (
-//             <div
-//               key={index}
-//               className="bg-slate-800 p-8 rounded-2xl shadow-lg hover:-translate-y-2 transition duration-300"
-//             >
-//               {/* Profile Image */}
-//               <div className="flex justify-center -mt-16 mb-4">
-//                 <img
-//                   src={item.image}
-//                   alt={item.name}
-//                   className="w-24 h-24 rounded-full border-4 border-blue-500 object-cover shadow-md"
-//                 />
-//               </div>
-
-//               {/* Stars */}
-//               <div className="flex justify-center mb-4 text-yellow-400">
-//                 {[...Array(5)].map((_, i) => (
-//                   <Star key={i} size={18} fill="currentColor" />
-//                 ))}
-//               </div>
-
-//               {/* Testimonial Text */}
-//               <p className="text-gray-300 italic mb-4 text-sm">
-//                 "{item.text}"
-//               </p>
-
-//               {/* Name & Course */}
-//               <h3 className="text-lg font-semibold text-white">
-//                 {item.name}
-//               </h3>
-//               <p className="text-blue-400 text-sm">{item.course}</p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
